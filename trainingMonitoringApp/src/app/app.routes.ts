@@ -24,7 +24,7 @@ export const unprotectedRoutes: Routes = [
 ];
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   ...protectedRoutes,
   ...unprotectedRoutes,
 ];

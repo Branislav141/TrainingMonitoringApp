@@ -2,9 +2,16 @@
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: rgba(255, 255, 255, 0.952); /* Poluprovidna bela pozadina */
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centriranje forme u odnosu na ekran */
 }
 
 h2 {
@@ -29,6 +36,20 @@ button {
   text-align: center;
   font-size: 0.875rem;
   margin-top: 10px;
+}
+
+.login-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 600px) {

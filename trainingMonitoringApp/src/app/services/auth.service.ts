@@ -18,8 +18,8 @@ export class AuthService {
     private http: HttpClient
   ) {}
 
-  saveToken(token: TokenEntity): void {
-    this.localStorageService.setItem(this.ACCESS_TOKEN_KEY, token.accessToken);
+  saveToken(token: any): void {
+    this.localStorageService.setItem(this.ACCESS_TOKEN_KEY, token);
   }
 
   removeToken(): void {

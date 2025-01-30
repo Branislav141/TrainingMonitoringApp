@@ -1,39 +1,71 @@
 .login-container {
-  max-width: 400px;
-  margin: auto;
-  padding: 2rem;
-  border: 1px solid #ccc;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.952); /* Poluprovidna bela pozadina */
   border-radius: 8px;
-  background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centriranje forme u odnosu na ekran */
 }
 
 h2 {
   text-align: center;
-  font-size: 24px;
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 mat-form-field {
   width: 100%;
-  margin-bottom: 1.5rem;
+  margin-bottom: 15px;
 }
 
 button {
   width: 100%;
-  padding: 0.75rem;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #007bff;
-  color: white;
-  transition: background-color 0.3s ease;
+  margin-top: 20px;
 }
 
 .error-message {
   color: red;
-  font-size: 14px;
   text-align: center;
-  margin-top: 1rem;
+  font-size: 0.875rem;
+  margin-top: 10px;
+}
+
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.register-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  mat-form-field {
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin-top: 15px;
+  }
 }
