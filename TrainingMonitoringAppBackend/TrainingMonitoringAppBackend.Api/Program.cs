@@ -14,6 +14,17 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Dodajte CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()  // Dozvoljava bilo koji origin
+              .AllowAnyMethod()  // Dozvoljava bilo koji HTTP metod
+              .AllowAnyHeader(); // Dozvoljava bilo koji header
+    });
+});
+
 builder.Services.AddDbContext<TrainingDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -24,7 +35,6 @@ builder.Services.AddIdentityCore<User>(options => options.SignIn.RequireConfirme
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<JwtTokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
-
 
 builder.Services.AddControllers();
 
@@ -52,6 +62,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseRouting();
+
+app.UseCors("AllowAll");
+
 app.UseAuthentication();
 app.UseAuthorization();
 

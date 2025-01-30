@@ -1,0 +1,50 @@
+.register-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  font-size: 0.875rem;
+  margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+  .register-container {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  mat-form-field {
+    margin-bottom: 10px;
+  }
+
+  button {
+    margin-top: 15px;
+  }
+}
