@@ -1,0 +1,56 @@
+/* The overlay background that covers the screen */
+.exercise-modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure the modal is above other content */
+}
+
+/* Modal content */
+.exercise-modal {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 500px;
+  max-width: 100%;
+}
+
+.exercise-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Form styling */
+.exercise-form mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.exercise-form button {
+  background-color: #3f51b5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.exercise-form button:hover {
+  background-color: #303f9f;
+}

@@ -16,5 +16,6 @@ namespace TrainingMonitoringAppBackend.Domain.Entities
         public double Weight { get; set; }
         public double Height { get; set; }
         public string Gender { get; set; }
+        public List<Workout> Workouts { get; set; }
     }
 }

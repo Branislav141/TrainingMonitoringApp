@@ -35,6 +35,11 @@ builder.Services.AddScoped<JwtTokenService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ICurrentUserRepository, CurrentUserRepository>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
+builder.Services.AddScoped<IWorkoutService, WorkoutService>();
+builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
+builder.Services.AddScoped<IExerciseService, ExerciseService>();
+
 
 builder.Services.AddControllers();
 

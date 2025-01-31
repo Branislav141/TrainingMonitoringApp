@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>All Exercises</h2>
+<mat-dialog-content>
+  <div *ngIf="exercises.length > 0; else noExercises">
+    <mat-card *ngFor="let exercise of exercises" class="exercise-card">
+      <mat-card-header>
+        <mat-card-title>{{ exercise.exerciseName }}</mat-card-title>
+        <mat-card-subtitle>{{ exercise.exerciseType }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>Duration: {{ exercise.duration }} minutes</p>
+        <p>Calories Burned: {{ exercise.caloriesBurned }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <ng-template #noExercises>
+    <p>No exercises found.</p>
+  </ng-template>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Close</button>
+</mat-dialog-actions>

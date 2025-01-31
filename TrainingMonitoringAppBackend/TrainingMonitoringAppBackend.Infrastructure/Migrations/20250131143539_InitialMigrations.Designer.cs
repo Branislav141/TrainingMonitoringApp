@@ -12,8 +12,8 @@ using TrainingMonitoringAppBackend.Infrastructure.Data;
 namespace TrainingMonitoringAppBackend.Infrastructure.Migrations
 {
     [DbContext(typeof(TrainingDbContext))]
-    [Migration("20250129193622_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250131143539_InitialMigrations")]
+    partial class InitialMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,6 +158,38 @@ namespace TrainingMonitoringAppBackend.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("TrainingMonitoringAppBackend.Domain.Entities.Exercise", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("CaloriesBurned")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Duration")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ExerciseName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExerciseType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("WorkoutId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("WorkoutId");
+
+                    b.ToTable("Exercises");
+                });
+
             modelBuilder.Entity("TrainingMonitoringAppBackend.Domain.Entities.User", b =>
                 {
                     b.Property<string>("Id")
@@ -241,6 +273,38 @@ namespace TrainingMonitoringAppBackend.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("TrainingMonitoringAppBackend.Domain.Entities.Workout", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FatigueLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Intensity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("WorkoutDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Workouts");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -290,6 +354,34 @@ namespace TrainingMonitoringAppBackend.Infrastructure.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TrainingMonitoringAppBackend.Domain.Entities.Exercise", b =>
+                {
+                    b.HasOne("TrainingMonitoringAppBackend.Domain.Entities.Workout", "Workout")
+                        .WithMany("Exercises")
+                        .HasForeignKey("WorkoutId");
+
+                    b.Navigation("Workout");
+                });
+
+            modelBuilder.Entity("TrainingMonitoringAppBackend.Domain.Entities.Workout", b =>
+                {
+                    b.HasOne("TrainingMonitoringAppBackend.Domain.Entities.User", null)
+                        .WithMany("Workouts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TrainingMonitoringAppBackend.Domain.Entities.User", b =>
+                {
+                    b.Navigation("Workouts");
+                });
+
+            modelBuilder.Entity("TrainingMonitoringAppBackend.Domain.Entities.Workout", b =>
+                {
+                    b.Navigation("Exercises");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TrainingMonitoringAppBackend.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -161,6 +161,51 @@ namespace TrainingMonitoringAppBackend.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Workouts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Intensity = table.Column<int>(type: "int", nullable: false),
+                    FatigueLevel = table.Column<int>(type: "int", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WorkoutDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Workouts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Workouts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Exercises",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ExerciseName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Duration = table.Column<double>(type: "float", nullable: false),
+                    CaloriesBurned = table.Column<double>(type: "float", nullable: false),
+                    ExerciseType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    WorkoutId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Exercises", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Exercises_Workouts_WorkoutId",
+                        column: x => x.WorkoutId,
+                        principalTable: "Workouts",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -199,6 +244,16 @@ namespace TrainingMonitoringAppBackend.Infrastructure.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exercises_WorkoutId",
+                table: "Exercises",
+                column: "WorkoutId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Workouts_UserId",
+                table: "Workouts",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -220,7 +275,13 @@ namespace TrainingMonitoringAppBackend.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Exercises");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Workouts");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

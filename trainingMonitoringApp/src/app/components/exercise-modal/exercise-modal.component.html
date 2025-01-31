@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>Create New Exercise</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field appearance="fill">
+      <mat-label>Exercise Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="newExercise.exerciseName"
+        name="exerciseName"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Duration (minutes)</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="newExercise.duration"
+        name="duration"
+        min="1"
+        required
+        step="1"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Calories Burned</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="newExercise.caloriesBurned"
+        name="caloriesBurned"
+        min="1"
+        required
+        step="1"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Exercise Type</mat-label>
+      <mat-select
+        [(ngModel)]="newExercise.exerciseType"
+        name="exerciseType"
+        required
+      >
+        <mat-option value="cardio">Cardio</mat-option>
+        <mat-option value="strength">Strength Training</mat-option>
+        <mat-option value="flexibility">Flexibility</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button (click)="onClose()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onCreateExercise()">
+    Create
+  </button>
+</mat-dialog-actions>

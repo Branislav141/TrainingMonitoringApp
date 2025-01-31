@@ -6,6 +6,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const materialModules = [
   MatFormFieldModule,
@@ -15,6 +17,8 @@ const materialModules = [
   MatCardModule,
   MatIconModule,
   MatProgressSpinnerModule,
+  MatListModule,
+  MatDialogModule,
 ];
 
 @NgModule({
